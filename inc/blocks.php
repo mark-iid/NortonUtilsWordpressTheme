@@ -13,6 +13,10 @@ function norton_register_box_block() {
     register_block_type(
         'norton/box',
         array(
+            'title'           => 'Norton Box',
+            'description'     => 'A raised-style box with beveled borders',
+            'category'        => 'design',
+            'icon'            => 'admin-page',
             'render_callback' => 'norton_render_box_block',
             'attributes'      => array(
                 'content' => array(
@@ -39,6 +43,10 @@ function norton_register_box_invert_block() {
     register_block_type(
         'norton/box-invert',
         array(
+            'title'           => 'Norton Box Invert',
+            'description'     => 'An inset-style box with inverted beveled borders',
+            'category'        => 'design',
+            'icon'            => 'admin-page',
             'render_callback' => 'norton_render_box_invert_block',
             'attributes'      => array(
                 'content' => array(
@@ -65,6 +73,10 @@ function norton_register_alert_block() {
     register_block_type(
         'norton/alert',
         array(
+            'title'           => 'Norton Alert',
+            'description'     => 'An alert box with configurable type (info, success, error)',
+            'category'        => 'design',
+            'icon'            => 'info',
             'render_callback' => 'norton_render_alert_block',
             'attributes'      => array(
                 'content' => array(

@@ -13,9 +13,6 @@ function norton_register_box_block() {
     register_block_type(
         'norton/box',
         array(
-            'editor_script'   => 'norton-blocks-editor',
-            'editor_style'    => 'norton-blocks-editor',
-            'style'           => 'norton-blocks',
             'render_callback' => 'norton_render_box_block',
             'attributes'      => array(
                 'content' => array(
@@ -42,9 +39,6 @@ function norton_register_box_invert_block() {
     register_block_type(
         'norton/box-invert',
         array(
-            'editor_script'   => 'norton-blocks-editor',
-            'editor_style'    => 'norton-blocks-editor',
-            'style'           => 'norton-blocks',
             'render_callback' => 'norton_render_box_invert_block',
             'attributes'      => array(
                 'content' => array(
@@ -71,9 +65,6 @@ function norton_register_alert_block() {
     register_block_type(
         'norton/alert',
         array(
-            'editor_script'   => 'norton-blocks-editor',
-            'editor_style'    => 'norton-blocks-editor',
-            'style'           => 'norton-blocks',
             'render_callback' => 'norton_render_alert_block',
             'attributes'      => array(
                 'content' => array(

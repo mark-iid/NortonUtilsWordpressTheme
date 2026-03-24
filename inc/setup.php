@@ -54,6 +54,20 @@ function norton_simple_scripts() {
 add_action( 'wp_enqueue_scripts', 'norton_simple_scripts' );
 
 /**
+ * Enqueue block editor scripts for Norton blocks
+ */
+function norton_enqueue_block_editor_assets() {
+    wp_enqueue_script(
+        'norton-blocks',
+        get_template_directory_uri() . '/assets/js/blocks.js',
+        array( 'wp-blocks', 'wp-block-editor', 'wp-element' ),
+        wp_get_theme()->get( 'Version' ),
+        false
+    );
+}
+add_action( 'enqueue_block_editor_assets', 'norton_enqueue_block_editor_assets' );
+
+/**
  * Custom nav walker — outputs flat <a> tags with no <ul>/<li> wrappers.
  * Keeps the nav bar looking like a real DOS menu strip.
  */
@@ -343,6 +357,104 @@ function norton_nuclear_css() {
         margin: 0 auto !important;
         padding: 20px !important;
         background: transparent !important;
+    }
+
+    /* Norton Custom Blocks */
+    html body .norton-box {
+        background: #000080 !important;
+        padding: 20px !important;
+        margin: 20px 0 !important;
+        color: #ffffff !important;
+        font-family: 'Courier New', monospace !important;
+        border-top: 2px solid #5555ff !important;
+        border-left: 2px solid #5555ff !important;
+        border-bottom: 2px solid #000000 !important;
+        border-right: 2px solid #000000 !important;
+        width: fit-content !important;
+        max-width: 100% !important;
+        display: block !important;
+    }
+
+    html body .norton-box-invert {
+        background: #000080 !important;
+        padding: 20px !important;
+        margin: 20px 0 !important;
+        color: #ffffff !important;
+        border-top: 2px solid #000000 !important;
+        border-left: 2px solid #000000 !important;
+        border-bottom: 2px solid #5555ff !important;
+        border-right: 2px solid #5555ff !important;
+        width: fit-content !important;
+        max-width: 100% !important;
+        display: block !important;
+    }
+
+    html body .norton-alert {
+        background: #000080 !important;
+        padding: 15px !important;
+        margin: 15px 0 !important;
+        position: relative !important;
+        color: #ffffff !important;
+        width: fit-content !important;
+        max-width: 100% !important;
+        display: block !important;
+    }
+
+    /* Tables wrapped in norton-box-invert style */
+    html body .wp-block-table,
+    html body figure.wp-block-table {
+        background: #000080 !important;
+        padding: 20px !important;
+        margin: 20px 0 !important;
+        border-top: 2px solid #000000 !important;
+        border-left: 2px solid #000000 !important;
+        border-bottom: 2px solid #5555ff !important;
+        border-right: 2px solid #5555ff !important;
+        width: fit-content !important;
+        max-width: 100% !important;
+    }
+
+    html body table,
+    html body .wp-block-table table,
+    html body figure.wp-block-table table {
+        background: #000080 !important;
+        color: #ffffff !important;
+        border-collapse: collapse !important;
+        margin: 0 !important;
+        width: auto !important;
+        border: none !important;
+    }
+
+    html body td,
+    html body th,
+    html body .wp-block-table td,
+    html body .wp-block-table th,
+    html body figure.wp-block-table td,
+    html body figure.wp-block-table th {
+        background: #000080 !important;
+        color: #ffffff !important;
+        padding: 12px !important;
+        text-align: left !important;
+        border-top: 2px solid #5555ff !important;
+        border-left: 2px solid #5555ff !important;
+        border-bottom: 2px solid #000000 !important;
+        border-right: 2px solid #000000 !important;
+        font-family: 'Courier New', monospace !important;
+    }
+
+    html body th,
+    html body .wp-block-table th,
+    html body figure.wp-block-table th {
+        color: #00ffff !important;
+        font-weight: bold !important;
+        text-transform: uppercase !important;
+    }
+
+    html body .wp-block-table thead,
+    html body figure.wp-block-table thead,
+    html body .wp-block-table tfoot,
+    html body figure.wp-block-table tfoot {
+        border: none !important;
     }
 
     @media (max-width: 768px) {

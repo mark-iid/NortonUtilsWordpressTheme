@@ -1,0 +1,21 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "norton/box-invert",
+  "title": "Norton Box Invert",
+  "description": "An inset-style box with inverted beveled borders",
+  "category": "design",
+  "icon": "admin-page",
+  "textdomain": "norton-simple",
+  "supports": {
+    "color": {
+      "background": false,
+      "text": false
+    },
+    "spacing": {
+      "margin": true,
+      "padding": true
+    },
+    "html": false
+  }
+}

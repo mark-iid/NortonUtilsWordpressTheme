@@ -1,0 +1,28 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "norton/alert",
+  "title": "Norton Alert",
+  "description": "An alert box with configurable type (info, success, error)",
+  "category": "design",
+  "icon": "info",
+  "textdomain": "norton-simple",
+  "attributes": {
+    "type": {
+      "type": "string",
+      "default": "info",
+      "enum": ["info", "success", "error"]
+    }
+  },
+  "supports": {
+    "color": {
+      "background": false,
+      "text": false
+    },
+    "spacing": {
+      "margin": true,
+      "padding": true
+    },
+    "html": false
+  }
+}

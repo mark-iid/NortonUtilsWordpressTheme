@@ -266,6 +266,53 @@ function norton_nuclear_css() {
         border-right: 2px solid #000000 !important;
     }
 
+    html body table,
+    html body .wp-block-table table,
+    html body figure.wp-block-table table {
+        background: #000080 !important;
+        color: #ffffff !important;
+        border-collapse: collapse !important;
+        margin: 20px 0 !important;
+        width: 100% !important;
+        border-top: 2px solid #000000 !important;
+        border-left: 2px solid #000000 !important;
+        border-bottom: 2px solid #5555ff !important;
+        border-right: 2px solid #5555ff !important;
+    }
+
+    html body td,
+    html body th,
+    html body .wp-block-table td,
+    html body .wp-block-table th,
+    html body figure.wp-block-table td,
+    html body figure.wp-block-table th {
+        background: #000080 !important;
+        color: #ffffff !important;
+        padding: 12px !important;
+        text-align: left !important;
+        border-top: 1px solid #5555ff !important;
+        border-left: 1px solid #5555ff !important;
+        border-bottom: 1px solid #000000 !important;
+        border-right: 1px solid #000000 !important;
+        font-family: 'Courier New', monospace !important;
+    }
+
+    html body th,
+    html body .wp-block-table th,
+    html body figure.wp-block-table th {
+        color: #00ffff !important;
+        font-weight: bold !important;
+        text-transform: uppercase !important;
+    }
+
+    html body .wp-block-table thead,
+    html body figure.wp-block-table thead,
+    html body .wp-block-table tfoot,
+    html body figure.wp-block-table tfoot {
+        border-bottom: none !important;
+        border-top: none !important;
+    }
+
     html body footer,
     html body .site-footer {
         text-align: center !important;

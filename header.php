@@ -32,12 +32,6 @@
         // Fallback nav — replace with your actual pages or set up a menu in WP Admin.
         ?>
         <a href="<?php echo esc_url( home_url( '/' ) ); ?>"><?php esc_html_e( 'HOME', 'norton-simple' ); ?></a>
-        <a href="<?php echo esc_url( home_url( '/blog/' ) ); ?>"><?php esc_html_e( 'BLOG', 'norton-simple' ); ?></a>
-        <a href="<?php echo esc_url( home_url( '/resume/' ) ); ?>"><?php esc_html_e( 'RESUME', 'norton-simple' ); ?></a>
-        <a href="<?php echo esc_url( home_url( '/professional-history/' ) ); ?>"><?php esc_html_e( 'PROFESSIONAL HISTORY', 'norton-simple' ); ?></a>
-        <a href="<?php echo esc_url( home_url( '/music/' ) ); ?>"><?php esc_html_e( 'MUSIC', 'norton-simple' ); ?></a>
-        <a href="<?php echo esc_url( home_url( '/radio/' ) ); ?>"><?php esc_html_e( 'RADIO', 'norton-simple' ); ?></a>
-        <a href="<?php echo esc_url( home_url( '/programming/' ) ); ?>"><?php esc_html_e( 'PROGRAMMING', 'norton-simple' ); ?></a>
         <?php
     }
     ?>

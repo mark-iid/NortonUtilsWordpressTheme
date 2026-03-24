@@ -1,0 +1,13 @@
+{
+  "name": "norton-simple",
+  "version": "1.0.0",
+  "description": "Build tools for the Norton Simple WordPress theme",
+  "private": true,
+  "scripts": {
+    "build": "node build.js",
+    "clean": "node -e \"require('fs').rmSync('dist', { recursive: true, force: true }); console.log('dist/ removed');\""
+  },
+  "devDependencies": {
+    "archiver": "^6.0.1"
+  }
+}

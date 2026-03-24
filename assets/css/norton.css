@@ -1,0 +1,431 @@
+/* ==========================================================================
+   Norton Simple — Main Stylesheet
+   Norton Utilities / DirectoryMaster retro aesthetic
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Base — body, fonts, edge fades
+   -------------------------------------------------------------------------- */
+
+html body,
+html body.wordpress,
+html body.home,
+html body.page,
+html body.single {
+    font-family: 'Courier New', monospace !important;
+    background: #000080 !important;
+    color: #ffffff !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    line-height: 1.5 !important;
+    position: relative !important;
+}
+
+/* Left/right CRT edge fade effects */
+html body::before,
+html body::after {
+    content: '' !important;
+    position: fixed !important;
+    top: 0 !important;
+    bottom: 0 !important;
+    width: 120px !important;
+    pointer-events: none !important;
+    z-index: 1000 !important;
+}
+
+html body::before {
+    left: 0 !important;
+    background: linear-gradient(to right, #000000 0%, #000000 30%, rgba(0,0,0,0.7) 60%, transparent 100%) !important;
+}
+
+html body::after {
+    right: 0 !important;
+    background: linear-gradient(to left, #000000 0%, #000000 30%, rgba(0,0,0,0.7) 60%, transparent 100%) !important;
+}
+
+/* Force sensible cursors */
+html body *,
+html body *::before,
+html body *::after {
+    cursor: default !important;
+    box-sizing: border-box !important;
+}
+
+html body a,
+html body button {
+    cursor: pointer !important;
+}
+
+/* --------------------------------------------------------------------------
+   Layout — two-column grid (content + sidebar)
+   -------------------------------------------------------------------------- */
+
+html body .site-content,
+html body #content,
+html body .content-area {
+    display: grid !important;
+    grid-template-columns: 1fr 300px !important;
+    gap: 20px !important;
+    max-width: 1300px !important;
+    margin: 0 auto !important;
+    padding: 20px !important;
+    background: transparent !important;
+}
+
+/* --------------------------------------------------------------------------
+   Main content area
+   -------------------------------------------------------------------------- */
+
+html body .main-content,
+html body .site-main,
+html body #main,
+html body .entry-content {
+    background: #000080 !important;
+    color: #ffffff !important;
+    padding: 20px !important;
+    margin: 0 !important;
+    /* Beveled border — raised effect */
+    border-top: 2px solid #5555ff !important;
+    border-left: 2px solid #5555ff !important;
+    border-bottom: 2px solid #000000 !important;
+    border-right: 2px solid #000000 !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+}
+
+html body article,
+html body .post,
+html body .page-content {
+    width: 100% !important;
+    margin: 0 !important;
+}
+
+/* --------------------------------------------------------------------------
+   Text — colors, links, headings
+   -------------------------------------------------------------------------- */
+
+html body .main-content *,
+html body .site-main *,
+html body #main *,
+html body article *,
+html body .entry-content * {
+    color: #ffffff !important;
+    background: transparent !important;
+}
+
+html body .main-content a,
+html body .site-main a,
+html body #main a,
+html body article a,
+html body .entry-content a {
+    color: #00ffff !important;
+    text-decoration: underline !important;
+    background: transparent !important;
+}
+
+html body .main-content a:hover,
+html body .site-main a:hover,
+html body #main a:hover,
+html body article a:hover,
+html body .entry-content a:hover {
+    color: #000080 !important;
+    background: #00ffff !important;
+    text-decoration: none !important;
+}
+
+html body .main-content h1,
+html body .main-content h2,
+html body .main-content h3,
+html body .main-content h4,
+html body .entry-content h1,
+html body .entry-content h2,
+html body .entry-content h3,
+html body .entry-content h4 {
+    color: #00ffff !important;
+    text-transform: uppercase !important;
+    border-bottom: 1px solid #00ffff !important;
+    padding-bottom: 5px !important;
+    margin: 15px 0 !important;
+    background: transparent !important;
+    font-family: 'Courier New', monospace !important;
+}
+
+/* --------------------------------------------------------------------------
+   Header
+   -------------------------------------------------------------------------- */
+
+html body .site-header {
+    text-align: center !important;
+    padding: 20px !important;
+    background: #000080 !important;
+}
+
+html body .site-title a {
+    color: #00ffff !important;
+    text-decoration: none !important;
+    font-family: 'Courier New', monospace !important;
+    font-size: 2em !important;
+}
+
+html body .site-description {
+    color: #ffffff !important;
+    margin: 0 !important;
+    font-family: 'Courier New', monospace !important;
+}
+
+/* --------------------------------------------------------------------------
+   Navigation
+   -------------------------------------------------------------------------- */
+
+html body .main-navigation,
+html body nav {
+    background: #000080 !important;
+    padding: 10px !important;
+    text-align: center !important;
+    margin: 0 auto 20px auto !important;
+    width: 90% !important;
+    border-top: 2px solid #5555ff !important;
+    border-left: 2px solid #5555ff !important;
+    border-bottom: 2px solid #000000 !important;
+    border-right: 2px solid #000000 !important;
+}
+
+html body .main-navigation a,
+html body nav a {
+    color: #ffffff !important;
+    text-decoration: none !important;
+    padding: 8px 15px !important;
+    margin: 0 5px !important;
+    display: inline-block !important;
+    text-transform: uppercase !important;
+    background: #000080 !important;
+    font-family: 'Courier New', monospace !important;
+    border-top: 2px solid #5555ff !important;
+    border-left: 2px solid #5555ff !important;
+    border-bottom: 2px solid #000000 !important;
+    border-right: 2px solid #000000 !important;
+}
+
+html body .main-navigation a:hover,
+html body nav a:hover {
+    /* Pressed button — reverse bevel */
+    border-top: 2px solid #000000 !important;
+    border-left: 2px solid #000000 !important;
+    border-bottom: 2px solid #5555ff !important;
+    border-right: 2px solid #5555ff !important;
+}
+
+/* --------------------------------------------------------------------------
+   Sidebar
+   -------------------------------------------------------------------------- */
+
+html body .sidebar {
+    background: #000080 !important;
+    padding: 15px !important;
+    color: #ffffff !important;
+    border-top: 2px solid #5555ff !important;
+    border-left: 2px solid #5555ff !important;
+    border-bottom: 2px solid #000000 !important;
+    border-right: 2px solid #000000 !important;
+}
+
+/* --------------------------------------------------------------------------
+   Widgets
+   -------------------------------------------------------------------------- */
+
+html body .widget {
+    margin-bottom: 20px !important;
+    padding: 15px !important;
+    background: #000080 !important;
+    color: #ffffff !important;
+    font-family: 'Courier New', monospace !important;
+    /* Inset effect — inverted bevel */
+    border-top: 2px solid #000000 !important;
+    border-left: 2px solid #000000 !important;
+    border-bottom: 2px solid #5555ff !important;
+    border-right: 2px solid #5555ff !important;
+}
+
+html body .widget-title {
+    color: #00ffff !important;
+    font-size: 16px !important;
+    margin-bottom: 10px !important;
+    text-transform: uppercase !important;
+    background: transparent !important;
+    font-family: 'Courier New', monospace !important;
+}
+
+html body .widget ul {
+    list-style: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+html body .widget li {
+    margin: 5px 0 !important;
+    color: #ffffff !important;
+}
+
+html body .widget a {
+    color: #ffffff !important;
+    text-decoration: none !important;
+}
+
+html body .widget a:hover {
+    color: #00ffff !important;
+}
+
+/* --------------------------------------------------------------------------
+   Shortcodes — [norton_box] and [norton_alert]
+   -------------------------------------------------------------------------- */
+
+html body .norton-box {
+    background: #000080 !important;
+    padding: 20px !important;
+    margin: 20px 0 !important;
+    color: #ffffff !important;
+    font-family: 'Courier New', monospace !important;
+    border-top: 2px solid #5555ff !important;
+    border-left: 2px solid #5555ff !important;
+    border-bottom: 2px solid #000000 !important;
+    border-right: 2px solid #000000 !important;
+}
+
+html body .norton-box-invert {
+    background: #000080 !important;
+    padding: 20px !important;
+    margin: 20px 0 !important;
+    color: #ffffff !important;
+    border-top: 2px solid #000000 !important;
+    border-left: 2px solid #000000 !important;
+    border-bottom: 2px solid #5555ff !important;
+    border-right: 2px solid #5555ff !important;
+}
+
+html body .norton-alert {
+    background: #000080 !important;
+    padding: 15px !important;
+    margin: 15px 0 !important;
+    position: relative !important;
+    color: #ffffff !important;
+    font-family: 'Courier New', monospace !important;
+    border-top: 2px solid #5555ff !important;
+    border-left: 2px solid #5555ff !important;
+    border-bottom: 2px solid #000000 !important;
+    border-right: 2px solid #000000 !important;
+}
+
+/* Alert type prefixes */
+html body .norton-alert::before {
+    content: "[!] " !important;
+    color: #ffff00 !important;
+    font-weight: bold !important;
+}
+
+html body .norton-alert.success::before {
+    content: "[\2713] " !important; /* ✓ */
+    color: #00ff00 !important;
+    font-weight: bold !important;
+}
+
+html body .norton-alert.error::before {
+    content: "[\2717] " !important; /* ✗ */
+    color: #ff0000 !important;
+    font-weight: bold !important;
+}
+
+/* --------------------------------------------------------------------------
+   WordPress block editor overrides
+   -------------------------------------------------------------------------- */
+
+html body .wp-block-heading,
+html body h1.wp-block-heading,
+html body h2.wp-block-heading {
+    color: #00ffff !important;
+    background: transparent !important;
+    font-family: 'Courier New', monospace !important;
+}
+
+html body .wp-block-paragraph,
+html body p {
+    color: #ffffff !important;
+    background: transparent !important;
+    font-family: 'Courier New', monospace !important;
+}
+
+/* --------------------------------------------------------------------------
+   Footer — cyan bar, DirectoryMaster style
+   -------------------------------------------------------------------------- */
+
+html body footer,
+html body .site-footer {
+    text-align: center !important;
+    padding: 2px 0 !important;
+    margin-top: 20px !important;
+    background: #00ffff !important;
+    color: #000000 !important;
+    font-family: 'Courier New', monospace !important;
+    font-weight: bold !important;
+    border: none !important;
+    position: relative !important;
+    z-index: 10 !important;
+    line-height: 1 !important;
+}
+
+html body footer *,
+html body .site-footer * {
+    color: #000000 !important;
+    background: transparent !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+/* --------------------------------------------------------------------------
+   Responsive — single column on mobile
+   -------------------------------------------------------------------------- */
+
+@media (max-width: 768px) {
+    html body .site-content,
+    html body #content,
+    html body .content-area {
+        grid-template-columns: 1fr !important;
+        padding: 10px !important;
+        gap: 15px !important;
+    }
+
+    html body .main-navigation,
+    html body nav {
+        padding: 5px !important;
+        width: 95% !important;
+    }
+
+    html body .main-navigation a,
+    html body nav a {
+        display: block !important;
+        margin: 2px 0 !important;
+        padding: 12px 15px !important;
+        text-align: center !important;
+    }
+
+    html body .main-content,
+    html body .sidebar {
+        padding: 15px !important;
+    }
+
+    html body,
+    html body.wordpress {
+        font-size: 14px !important;
+    }
+
+    html body h1,
+    html body h2,
+    html body h3 {
+        font-size: 1.2em !important;
+    }
+
+    /* No edge fades on narrow screens */
+    html body::before,
+    html body::after {
+        display: none !important;
+    }
+}

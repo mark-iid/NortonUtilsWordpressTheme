@@ -8,7 +8,25 @@
     </h2>
 
     <div class="entry-summary">
-        <?php the_excerpt(); ?>
+        <?php
+        // get_the_excerpt() strips any non-core blocks (including our norton/*
+        // blocks) before trimming, so a post whose intro lives inside a Norton
+        // Box yields an empty excerpt. Fall back to rendering the full content
+        // and trimming that so those posts still get a snippet.
+        $norton_excerpt = trim( get_the_excerpt() );
+        if ( '' === $norton_excerpt ) {
+            $norton_excerpt = wp_trim_words(
+                wp_strip_all_tags( strip_shortcodes( do_blocks( get_the_content() ) ) ),
+                55,
+                '&hellip;'
+            );
+        }
+        if ( '' !== trim( $norton_excerpt ) ) :
+            ?>
+            <p><?php echo esc_html( $norton_excerpt ); ?></p>
+            <?php
+        endif;
+        ?>
         <p class="read-more">
             <a href="<?php the_permalink(); ?>">
                 <?php

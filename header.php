@@ -29,10 +29,23 @@
             'walker'         => new Norton_Simple_Walker_Nav_Menu(),
         ) );
     } else {
-        // Fallback nav — replace with your actual pages or set up a menu in WP Admin.
+        // No menu is assigned to the "primary" location. Switching themes drops
+        // that assignment — the menu itself still exists under Appearance → Menus.
+        // Until one is assigned, fall back to HOME plus every top-level page.
         ?>
         <a href="<?php echo esc_url( home_url( '/' ) ); ?>"><?php esc_html_e( 'HOME', 'norton-simple' ); ?></a>
         <?php
+        $norton_fallback_pages = get_pages( array(
+            'parent'      => 0,
+            'sort_column' => 'menu_order,post_title',
+        ) );
+        foreach ( $norton_fallback_pages as $norton_fallback_page ) {
+            printf(
+                '<a href="%1$s">%2$s</a>',
+                esc_url( get_permalink( $norton_fallback_page->ID ) ),
+                esc_html( get_the_title( $norton_fallback_page->ID ) )
+            );
+        }
     }
     ?>
 </nav>

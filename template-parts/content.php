@@ -7,21 +7,20 @@
         <?php endif; ?>
     </h2>
 
-    <div class="entry-content">
-        <?php
-        the_content(
-            sprintf(
-                wp_kses(
-                    __( '[READ MORE <span class="screen-reader-text">"%1$s"</span>]', 'norton-simple' ),
-                    array( 'span' => array( 'class' => array() ) )
-                ),
-                get_the_title()
-            )
-        );
-        wp_link_pages( array(
-            'before' => '<div class="page-links">' . esc_html__( '[PAGES]', 'norton-simple' ),
-            'after'  => '</div>',
-        ) );
-        ?>
+    <div class="entry-summary">
+        <?php the_excerpt(); ?>
+        <p class="read-more">
+            <a href="<?php the_permalink(); ?>">
+                <?php
+                printf(
+                    wp_kses(
+                        __( '[READ MORE <span class="screen-reader-text">"%1$s"</span>]', 'norton-simple' ),
+                        array( 'span' => array( 'class' => array() ) )
+                    ),
+                    esc_html( get_the_title() )
+                );
+                ?>
+            </a>
+        </p>
     </div>
 </article>

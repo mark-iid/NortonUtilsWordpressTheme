@@ -309,6 +309,46 @@ html body a {
 }
 
 /* --------------------------------------------------------------------------
+   Post list — excerpt + [READ MORE] button
+   -------------------------------------------------------------------------- */
+
+html body .entry-summary {
+    margin: 10px 0 20px 0 !important;
+    background: transparent !important;
+}
+
+html body .read-more {
+    margin: 12px 0 0 0 !important;
+    background: transparent !important;
+}
+
+/* Raised beveled button, matching the nav buttons */
+html body .read-more a {
+    color: #ffffff !important;
+    text-decoration: none !important;
+    text-transform: uppercase !important;
+    display: inline-block !important;
+    padding: 6px 14px !important;
+    background: #000080 !important;
+    font-family: 'Courier New', monospace !important;
+    font-weight: bold !important;
+    border-top: 2px solid #5555ff !important;
+    border-left: 2px solid #5555ff !important;
+    border-bottom: 2px solid #000000 !important;
+    border-right: 2px solid #000000 !important;
+}
+
+html body .read-more a:hover {
+    color: #00ffff !important;
+    background: #000080 !important;
+    /* Pressed button — reverse bevel */
+    border-top: 2px solid #000000 !important;
+    border-left: 2px solid #000000 !important;
+    border-bottom: 2px solid #5555ff !important;
+    border-right: 2px solid #5555ff !important;
+}
+
+/* --------------------------------------------------------------------------
    WordPress block editor overrides
    -------------------------------------------------------------------------- */
 

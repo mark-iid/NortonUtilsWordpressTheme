@@ -163,6 +163,30 @@ function norton_nuclear_css() {
         text-decoration: underline !important;
     }
 
+    /* [READ MORE] button on post listings — raised bevel, like the nav */
+    html body .read-more a {
+        color: #ffffff !important;
+        text-decoration: none !important;
+        text-transform: uppercase !important;
+        display: inline-block !important;
+        padding: 6px 14px !important;
+        background: #000080 !important;
+        font-weight: bold !important;
+        border-top: 2px solid #5555ff !important;
+        border-left: 2px solid #5555ff !important;
+        border-bottom: 2px solid #000000 !important;
+        border-right: 2px solid #000000 !important;
+    }
+
+    html body .read-more a:hover {
+        color: #00ffff !important;
+        text-decoration: none !important;
+        border-top: 2px solid #000000 !important;
+        border-left: 2px solid #000000 !important;
+        border-bottom: 2px solid #5555ff !important;
+        border-right: 2px solid #5555ff !important;
+    }
+
     html body .main-content h1,
     html body .main-content h2,
     html body .main-content h3,

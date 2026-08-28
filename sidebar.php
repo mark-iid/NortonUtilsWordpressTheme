@@ -1,4 +1,13 @@
-<aside class="sidebar" role="complementary" aria-label="<?php esc_attr_e( 'Primary Sidebar', 'norton-simple' ); ?>">
+<?php
+/**
+ * Norton Simple — Sidebar
+ *
+ * @package Norton_Simple
+ */
+
+defined( 'ABSPATH' ) || exit;
+?>
+<aside class="sidebar" aria-label="<?php esc_attr_e( 'Primary Sidebar', 'norton-simple' ); ?>">
     <?php if ( is_active_sidebar( 'primary-sidebar' ) ) : ?>
         <?php dynamic_sidebar( 'primary-sidebar' ); ?>
     <?php else : ?>

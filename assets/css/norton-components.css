@@ -1,0 +1,139 @@
+/* ==========================================================================
+   Norton Simple — Shared Components
+
+   Design tokens plus the chrome that must look identical on the front end and
+   inside the block editor canvas: the beveled boxes, the alert, and tables.
+   Loaded on the front end as a dependency of norton.css, and into the editor
+   via add_editor_style() in inc/setup.php. Keep it free of layout rules —
+   the editor canvas has its own layout.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Tokens — aliases over the theme.json presets, with standalone fallbacks
+   -------------------------------------------------------------------------- */
+
+:root {
+	--norton-navy: var( --wp--preset--color--navy, #000080 );
+	--norton-cyan: var( --wp--preset--color--cyan, #00ffff );
+	--norton-white: var( --wp--preset--color--white, #ffffff );
+	--norton-black: var( --wp--preset--color--black, #000000 );
+	--norton-alert-yellow: var( --wp--preset--color--alert-yellow, #ffff00 );
+	--norton-alert-green: var( --wp--preset--color--alert-green, #00ff00 );
+	--norton-alert-red: var( --wp--preset--color--alert-red, #ff0000 );
+
+	--norton-bevel-width: var( --wp--custom--bevel--width, 2px );
+	--norton-bevel-light: var( --wp--custom--bevel--light, #5555ff );
+	--norton-bevel-dark: var( --wp--custom--bevel--dark, #000000 );
+
+	--norton-space-1: var( --wp--preset--spacing--20, 10px );
+	--norton-space-2: var( --wp--preset--spacing--30, 15px );
+	--norton-space-3: var( --wp--preset--spacing--40, 20px );
+
+	--norton-mono: var( --wp--preset--font-family--mono, 'Courier New', Courier, monospace );
+}
+
+/* --------------------------------------------------------------------------
+   Norton components — box, inverted box, alert
+   Shared by the block render templates and the shortcodes.
+   -------------------------------------------------------------------------- */
+
+.norton-box,
+.norton-box-invert,
+.norton-alert {
+	padding: var( --norton-space-3 );
+	margin: var( --norton-space-3 ) 0;
+	max-width: 100%;
+}
+
+.norton-box,
+.norton-alert {
+	border-top: var( --norton-bevel-width ) solid var( --norton-bevel-light );
+	border-left: var( --norton-bevel-width ) solid var( --norton-bevel-light );
+	border-bottom: var( --norton-bevel-width ) solid var( --norton-bevel-dark );
+	border-right: var( --norton-bevel-width ) solid var( --norton-bevel-dark );
+}
+
+.norton-box-invert {
+	border-top: var( --norton-bevel-width ) solid var( --norton-bevel-dark );
+	border-left: var( --norton-bevel-width ) solid var( --norton-bevel-dark );
+	border-bottom: var( --norton-bevel-width ) solid var( --norton-bevel-light );
+	border-right: var( --norton-bevel-width ) solid var( --norton-bevel-light );
+}
+
+.norton-box > :first-child,
+.norton-box-invert > :first-child,
+.norton-alert > :first-child {
+	margin-top: 0;
+}
+
+.norton-box > :last-child,
+.norton-box-invert > :last-child,
+.norton-alert > :last-child {
+	margin-bottom: 0;
+}
+
+.norton-alert {
+	padding: var( --norton-space-2 );
+	margin: var( --norton-space-2 ) 0;
+}
+
+/* Status glyph. aria-hidden by virtue of being generated content. */
+.norton-alert::before {
+	content: '[!] ';
+	color: var( --norton-alert-yellow );
+	font-weight: bold;
+}
+
+.norton-alert.is-type-success::before {
+	content: '[\2713] '; /* checkmark */
+	color: var( --norton-alert-green );
+}
+
+.norton-alert.is-type-error::before {
+	content: '[\2717] '; /* ballot X */
+	color: var( --norton-alert-red );
+}
+
+/* --------------------------------------------------------------------------
+   Tables — inset panel wrapper, raised cells
+   -------------------------------------------------------------------------- */
+
+.wp-block-table {
+	padding: var( --norton-space-3 );
+	margin: var( --norton-space-3 ) 0;
+	overflow-x: auto;
+	border-top: var( --norton-bevel-width ) solid var( --norton-bevel-dark );
+	border-left: var( --norton-bevel-width ) solid var( --norton-bevel-dark );
+	border-bottom: var( --norton-bevel-width ) solid var( --norton-bevel-light );
+	border-right: var( --norton-bevel-width ) solid var( --norton-bevel-light );
+}
+
+table {
+	border-collapse: collapse;
+	width: 100%;
+}
+
+.wp-block-table table {
+	width: auto;
+}
+
+td,
+th {
+	padding: 12px;
+	text-align: left;
+	border-top: var( --norton-bevel-width ) solid var( --norton-bevel-light );
+	border-left: var( --norton-bevel-width ) solid var( --norton-bevel-light );
+	border-bottom: var( --norton-bevel-width ) solid var( --norton-bevel-dark );
+	border-right: var( --norton-bevel-width ) solid var( --norton-bevel-dark );
+}
+
+th {
+	color: var( --norton-cyan );
+	font-weight: bold;
+	text-transform: uppercase;
+}
+
+.wp-block-table thead,
+.wp-block-table tfoot {
+	border: 0;
+}

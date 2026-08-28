@@ -1,7 +1,16 @@
-<?php get_header(); ?>
+<?php
+/**
+ * Norton Simple — Archive Template
+ *
+ * @package Norton_Simple
+ */
+
+defined( 'ABSPATH' ) || exit;
+
+get_header(); ?>
 
 <div class="site-content">
-    <main class="main-content" id="main" role="main">
+    <main class="main-content" id="main">
         <h1 class="archive-title">
             <?php
             if ( is_category() ) {
@@ -31,6 +40,15 @@
         else :
             get_template_part( 'template-parts/content', 'none' );
         endif;
+        ?>
+
+        <?php
+        the_posts_pagination( array(
+            'mid_size'           => 2,
+            'prev_text'          => esc_html__( '[&larr; PREV]', 'norton-simple' ),
+            'next_text'          => esc_html__( '[NEXT &rarr;]', 'norton-simple' ),
+            'screen_reader_text' => esc_html__( 'Posts navigation', 'norton-simple' ),
+        ) );
         ?>
     </main>
 

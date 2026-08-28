@@ -7,6 +7,8 @@
   "category": "design",
   "icon": "info",
   "textdomain": "norton-simple",
+  "editorScript": "norton-simple-blocks",
+  "render": "file:./render.php",
   "attributes": {
     "type": {
       "type": "string",
@@ -15,6 +17,8 @@
     }
   },
   "supports": {
+    "align": true,
+    "anchor": true,
     "color": {
       "background": false,
       "text": false

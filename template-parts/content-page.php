@@ -1,3 +1,12 @@
+<?php
+/**
+ * Norton Simple — Full content for a page
+ *
+ * @package Norton_Simple
+ */
+
+defined( 'ABSPATH' ) || exit;
+?>
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
     <h1 class="entry-title"><?php the_title(); ?></h1>
 
@@ -10,4 +19,11 @@
         ) );
         ?>
     </div>
+
+    <?php
+    // Only loads comments.php when the post actually accepts or has comments.
+    if ( comments_open() || get_comments_number() ) {
+        comments_template();
+    }
+    ?>
 </article>

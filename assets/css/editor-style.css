@@ -1,0 +1,43 @@
+/* ==========================================================================
+   Norton Simple — Block Editor Styles
+
+   Loaded into the editor canvas by add_editor_style() alongside
+   norton-components.css. theme.json already gives the canvas the navy
+   background, monospace type and cyan headings; this file adds the handful of
+   front-end touches theme.json has no field for, so what an author sees while
+   writing matches what readers get.
+
+   WordPress 7.0 stopped handing classic themes any post-editor styling of
+   their own, which makes this file the only thing standing between the
+   author and a plain white canvas.
+   ========================================================================== */
+
+/* Headings carry an underscore rule on the front end (see norton.css). */
+.editor-styles-wrapper h1,
+.editor-styles-wrapper h2,
+.editor-styles-wrapper h3,
+.editor-styles-wrapper h4 {
+	border-bottom: 1px solid var( --norton-cyan );
+	padding-bottom: 5px;
+}
+
+/* Match the front end's content column width and inset. */
+.editor-styles-wrapper .wp-block {
+	max-width: 940px;
+}
+
+/* Keep the caret and selection legible against the navy. */
+.editor-styles-wrapper {
+	caret-color: var( --norton-cyan );
+}
+
+.editor-styles-wrapper ::selection {
+	background: var( --norton-cyan );
+	color: var( --norton-navy );
+}
+
+/* Code and preformatted blocks sit on black in the canvas too. */
+.editor-styles-wrapper pre,
+.editor-styles-wrapper code {
+	font-family: var( --norton-mono );
+}

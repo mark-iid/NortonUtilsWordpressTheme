@@ -1,3 +1,12 @@
+<?php
+/**
+ * Norton Simple — Post summary for lists and archives
+ *
+ * @package Norton_Simple
+ */
+
+defined( 'ABSPATH' ) || exit;
+?>
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
     <h2 class="entry-title">
         <?php if ( is_singular() ) : ?>
@@ -32,7 +41,8 @@
                 <?php
                 printf(
                     wp_kses(
-                        __( '[READ MORE <span class="screen-reader-text">"%1$s"</span>]', 'norton-simple' ),
+                        /* translators: %1$s: post title, for screen readers. */
+                        __( '[READ MORE<span class="screen-reader-text"> "%1$s"</span>]', 'norton-simple' ),
                         array( 'span' => array( 'class' => array() ) )
                     ),
                     esc_html( get_the_title() )

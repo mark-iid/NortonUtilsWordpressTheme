@@ -1,0 +1,329 @@
+# Copyright (C) 2026 Mark Earnest
+# This file is distributed under the GPL-3.0-or-later.
+msgid ""
+msgstr ""
+"Project-Id-Version: Norton Simple 1.1.1\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/theme/norton-simple\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2026-08-28T22:11:58+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.12.0\n"
+"X-Domain: norton-simple\n"
+
+#. Theme Name of the theme
+#: style.css
+msgid "Norton Simple"
+msgstr ""
+
+#. Theme URI of the theme
+#: style.css
+msgid "https://github.com/markearnest/norton-simple"
+msgstr ""
+
+#. Description of the theme
+#: style.css
+msgid "A retro Norton Utilities-inspired WordPress theme. Dark blue, monospace, beveled borders, and cyan accents."
+msgstr ""
+
+#. Author of the theme
+#: style.css
+msgid "Mark Earnest"
+msgstr ""
+
+#. Author URI of the theme
+#: style.css
+msgid "https://markearnest.com"
+msgstr ""
+
+#: 404.php:16
+msgid "The page you requested does not exist or has been moved."
+msgstr ""
+
+#: 404.php:17
+msgid "[RETURN TO HOME]"
+msgstr ""
+
+#: archive.php:29
+msgid "[ARCHIVE]"
+msgstr ""
+
+#: archive.php:48
+#: index.php:28
+#: search.php:43
+msgid "[&larr; PREV]"
+msgstr ""
+
+#: archive.php:49
+#: index.php:29
+#: search.php:44
+msgid "[NEXT &rarr;]"
+msgstr ""
+
+#: archive.php:50
+#: index.php:30
+msgid "Posts navigation"
+msgstr ""
+
+#. translators: %s: comment count.
+#: comments.php:29
+#, php-format
+msgid "[%s COMMENT]"
+msgid_plural "[%s COMMENTS]"
+msgstr[0] ""
+msgstr[1] ""
+
+#: comments.php:47
+msgid "[&larr; OLDER COMMENTS]"
+msgstr ""
+
+#: comments.php:48
+msgid "[NEWER COMMENTS &rarr;]"
+msgstr ""
+
+#: comments.php:53
+msgid "[COMMENTS CLOSED]"
+msgstr ""
+
+#: comments.php:59
+msgid "[LEAVE A COMMENT]"
+msgstr ""
+
+#. translators: %s: name of the comment author being replied to.
+#: comments.php:61
+#, php-format
+msgid "[REPLY TO %s]"
+msgstr ""
+
+#: comments.php:62
+msgid "[CANCEL]"
+msgstr ""
+
+#: comments.php:63
+msgid "Transmit"
+msgstr ""
+
+#: comments.php:66
+msgid "Message"
+msgstr ""
+
+#: header.php:20
+msgid "Skip to content"
+msgstr ""
+
+#: header.php:40
+#: inc/setup.php:51
+msgid "Primary Navigation"
+msgstr ""
+
+#: inc/customizer.php:13
+msgid "Footer"
+msgstr ""
+
+#: inc/customizer.php:24
+msgid "Footer Status Text"
+msgstr ""
+
+#: inc/customizer.php:25
+msgid "Text displayed in the footer bar after the copyright line."
+msgstr ""
+
+#: inc/setup.php:61
+#: sidebar.php:10
+msgid "Primary Sidebar"
+msgstr ""
+
+#: inc/setup.php:63
+msgid "Widgets in this area appear in the right sidebar."
+msgstr ""
+
+#: inc/setup.php:116
+msgid "Home"
+msgstr ""
+
+#. translators: %s: search query.
+#: search.php:23
+#, php-format
+msgid "[SEARCH] %s"
+msgstr ""
+
+#: search.php:45
+msgid "Search results navigation"
+msgstr ""
+
+#: sidebar.php:16
+msgid "Add widgets via Appearance &rarr; Widgets."
+msgstr ""
+
+#: single.php:21
+msgid "[&larr; %title]"
+msgstr ""
+
+#: single.php:22
+msgid "[%title &rarr;]"
+msgstr ""
+
+#. translators: %s: the search query.
+#: template-parts/content-none.php:17
+#, php-format
+msgid "No results for &ldquo;%s&rdquo;. Try different keywords."
+msgstr ""
+
+#: template-parts/content-none.php:24
+msgid "Nothing to display here. Check back later."
+msgstr ""
+
+#: template-parts/content-page.php:17
+#: template-parts/content-single.php:26
+msgid "[PAGES]"
+msgstr ""
+
+#. translators: %1$s: post title, for screen readers.
+#: template-parts/content-single.php:19
+#, php-format
+msgid "[CONTINUED &rarr;<span class=\"screen-reader-text\"> \"%1$s\"</span>]"
+msgstr ""
+
+#. translators: %1$s: post title, for screen readers.
+#: template-parts/content.php:45
+#, php-format
+msgid "[READ MORE<span class=\"screen-reader-text\"> \"%1$s\"</span>]"
+msgstr ""
+
+#: assets/js/blocks.js:64
+msgid "Alert settings"
+msgstr ""
+
+#: assets/js/blocks.js:66
+msgid "Type"
+msgstr ""
+
+#: assets/js/blocks.js:69
+msgid "Info"
+msgstr ""
+
+#: assets/js/blocks.js:70
+msgid "Success"
+msgstr ""
+
+#: assets/js/blocks.js:71
+msgid "Error"
+msgstr ""
+
+#: blocks/alert/block.json
+msgctxt "block title"
+msgid "Norton Alert"
+msgstr ""
+
+#: blocks/alert/block.json
+msgctxt "block description"
+msgid "An alert box with configurable type (info, success, error)"
+msgstr ""
+
+#: blocks/box-invert/block.json
+msgctxt "block title"
+msgid "Norton Box Invert"
+msgstr ""
+
+#: blocks/box-invert/block.json
+msgctxt "block description"
+msgid "An inset-style box with inverted beveled borders"
+msgstr ""
+
+#: blocks/box/block.json
+msgctxt "block title"
+msgid "Norton Box"
+msgstr ""
+
+#: blocks/box/block.json
+msgctxt "block description"
+msgid "A raised-style box with beveled borders"
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "Norton Navy"
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "Terminal Cyan"
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "Screen White"
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "Shadow Black"
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "Bevel Highlight"
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "Alert Yellow"
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "Alert Green"
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "Alert Red"
+msgstr ""
+
+#: theme.json
+msgctxt "Font family name"
+msgid "Courier"
+msgstr ""
+
+#: theme.json
+msgctxt "Font size name"
+msgid "Small"
+msgstr ""
+
+#: theme.json
+msgctxt "Font size name"
+msgid "Medium"
+msgstr ""
+
+#: theme.json
+msgctxt "Font size name"
+msgid "Large"
+msgstr ""
+
+#: theme.json
+msgctxt "Font size name"
+msgid "Extra Large"
+msgstr ""
+
+#: theme.json
+msgctxt "Space size name"
+msgid "1"
+msgstr ""
+
+#: theme.json
+msgctxt "Space size name"
+msgid "2"
+msgstr ""
+
+#: theme.json
+msgctxt "Space size name"
+msgid "3"
+msgstr ""
+
+#: theme.json
+msgctxt "Space size name"
+msgid "4"
+msgstr ""

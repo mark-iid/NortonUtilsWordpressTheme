@@ -1,9 +1,19 @@
+<?php
+/**
+ * Norton Simple — No results found
+ *
+ * @package Norton_Simple
+ */
+
+defined( 'ABSPATH' ) || exit;
+?>
 <div class="norton-box">
     <?php if ( is_search() ) : ?>
         <h2>[SEARCH: NO RESULTS]</h2>
         <p>
             <?php
             printf(
+                /* translators: %s: the search query. */
                 esc_html__( 'No results for &ldquo;%s&rdquo;. Try different keywords.', 'norton-simple' ),
                 '<strong>' . esc_html( get_search_query() ) . '</strong>'
             );

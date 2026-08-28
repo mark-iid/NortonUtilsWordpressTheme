@@ -1,10 +1,18 @@
 <?php
 /**
- * Render callback for Norton Box Invert block
- * 
- * Wraps the inner content in a norton-box-invert div.
+ * Render callback for the Norton Box Invert block.
+ *
+ * Wraps the block's inner content in an inset-bevel container.
+ *
+ * @var array    $attributes Block attributes.
+ * @var string   $content    Rendered inner blocks.
+ * @var WP_Block $block      Block instance.
  */
+
+defined( 'ABSPATH' ) || exit;
+
+$norton_wrapper = get_block_wrapper_attributes( array( 'class' => 'norton-box-invert' ) );
 ?>
-<div class="norton-box-invert">
-	<?php echo wp_kses_post( $content ); ?>
+<div <?php echo $norton_wrapper; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- escaped by get_block_wrapper_attributes(). ?>>
+	<?php echo $content; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- inner blocks are already rendered and sanitized by core. ?>
 </div>

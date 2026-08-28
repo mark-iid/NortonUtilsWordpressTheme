@@ -1,7 +1,16 @@
-<?php get_header(); ?>
+<?php
+/**
+ * Norton Simple — 404 Template
+ *
+ * @package Norton_Simple
+ */
+
+defined( 'ABSPATH' ) || exit;
+
+get_header(); ?>
 
 <div class="site-content">
-    <main class="main-content" id="main" role="main">
+    <main class="main-content" id="main">
         <div class="norton-box">
             <h1>[ERROR 404] FILE NOT FOUND</h1>
             <p><?php esc_html_e( 'The page you requested does not exist or has been moved.', 'norton-simple' ); ?></p>

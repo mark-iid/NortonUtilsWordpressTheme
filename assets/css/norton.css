@@ -1,445 +1,558 @@
 /* ==========================================================================
    Norton Simple — Main Stylesheet
    Norton Utilities / DirectoryMaster retro aesthetic
+
+   Colours, typography, spacing and link/heading/button styling are declared
+   in theme.json and reach the browser as --wp--preset--* custom properties;
+   the design tokens and the shared box/alert/table chrome live in
+   norton-components.css, which the editor loads too. This file holds what is
+   front-end only: page layout, header, nav, sidebar, comments and footer.
+
+   It contains no !important — if a rule here seems to need one, the value
+   almost certainly belongs in theme.json instead.
    ========================================================================== */
 
 /* --------------------------------------------------------------------------
-   Base — body, fonts, edge fades
+   Base
    -------------------------------------------------------------------------- */
 
-html body,
-html body.wordpress,
-html body.home,
-html body.page,
-html body.single {
-    font-family: 'Courier New', monospace !important;
-    background: #000080 !important;
-    color: #ffffff !important;
-    margin: 0 !important;
-    padding: 0 !important;
-    line-height: 1.5 !important;
-    position: relative !important;
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
 }
 
-/* Left/right CRT edge fade effects */
-html body::before,
-html body::after {
-    content: '' !important;
-    position: fixed !important;
-    top: 0 !important;
-    bottom: 0 !important;
-    width: 120px !important;
-    pointer-events: none !important;
-    z-index: 1000 !important;
+body {
+	/* theme.json supplies background, colour, font and line-height. */
+	margin: 0;
+	padding: 0;
+	position: relative;
 }
 
-html body::before {
-    left: 0 !important;
-    background: linear-gradient(to right, #000000 0%, #000000 30%, rgba(0,0,0,0.7) 60%, transparent 100%) !important;
+/* Left/right CRT edge fades */
+body::before,
+body::after {
+	content: '';
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	width: 120px;
+	pointer-events: none;
+	z-index: 100;
 }
 
-html body::after {
-    right: 0 !important;
-    background: linear-gradient(to left, #000000 0%, #000000 30%, rgba(0,0,0,0.7) 60%, transparent 100%) !important;
+body::before {
+	left: 0;
+	background: linear-gradient( to right, #000000 0%, #000000 30%, rgba( 0, 0, 0, 0.7 ) 60%, transparent 100% );
 }
 
-/* Force sensible cursors */
-html body *,
-html body *::before,
-html body *::after {
-    cursor: default !important;
-    box-sizing: border-box !important;
+body::after {
+	right: 0;
+	background: linear-gradient( to left, #000000 0%, #000000 30%, rgba( 0, 0, 0, 0.7 ) 60%, transparent 100% );
 }
 
-html body a,
-html body button {
-    cursor: pointer !important;
+/* --------------------------------------------------------------------------
+   Accessibility helpers
+   -------------------------------------------------------------------------- */
+
+/* Visually hidden, still read by assistive technology. */
+.screen-reader-text {
+	border: 0;
+	clip-path: inset( 50% );
+	height: 1px;
+	margin: -1px;
+	overflow: hidden;
+	padding: 0;
+	position: absolute;
+	width: 1px;
+	word-wrap: normal;
+}
+
+.screen-reader-text:focus {
+	clip-path: none;
+	height: auto;
+	margin: 0;
+	overflow: visible;
+	position: static;
+	width: auto;
+}
+
+/* Skip link — hidden until focused, then a beveled button at top left. */
+.skip-link {
+	position: absolute;
+	left: -9999px;
+	top: 0;
+	z-index: 1000;
+}
+
+.skip-link:focus {
+	left: var( --norton-space-1 );
+	top: var( --norton-space-1 );
+	padding: var( --norton-space-1 ) var( --norton-space-2 );
+	background: var( --norton-navy );
+	color: var( --norton-cyan );
+	text-decoration: none;
+	text-transform: uppercase;
+	font-weight: bold;
+	border-top: var( --norton-bevel-width ) solid var( --norton-bevel-light );
+	border-left: var( --norton-bevel-width ) solid var( --norton-bevel-light );
+	border-bottom: var( --norton-bevel-width ) solid var( --norton-bevel-dark );
+	border-right: var( --norton-bevel-width ) solid var( --norton-bevel-dark );
+}
+
+/* A visible focus ring everywhere, in a colour that survives the navy. */
+:focus-visible {
+	outline: 2px solid var( --norton-cyan );
+	outline-offset: 2px;
 }
 
 /* --------------------------------------------------------------------------
    Layout — two-column grid (content + sidebar)
    -------------------------------------------------------------------------- */
 
-html body .site-content,
-html body #content,
-html body .content-area {
-    display: grid !important;
-    grid-template-columns: 1fr 300px !important;
-    gap: 20px !important;
-    max-width: 1300px !important;
-    margin: 0 auto !important;
-    padding: 20px !important;
-    background: transparent !important;
-}
-
-/* --------------------------------------------------------------------------
-   Main content area
-   -------------------------------------------------------------------------- */
-
-html body .main-content,
-html body .site-main,
-html body #main,
-html body .entry-content {
-    background: #000080 !important;
-    color: #ffffff !important;
-    padding: 20px !important;
-    margin: 0 !important;
-    /* Beveled border — raised effect */
-    border-top: 2px solid #5555ff !important;
-    border-left: 2px solid #5555ff !important;
-    border-bottom: 2px solid #000000 !important;
-    border-right: 2px solid #000000 !important;
-    border-radius: 0 !important;
-    box-shadow: none !important;
-}
-
-html body article,
-html body .post,
-html body .page-content {
-    width: 100% !important;
-    margin: 0 !important;
-}
-
-/* --------------------------------------------------------------------------
-   Text — colors, links, headings
-   -------------------------------------------------------------------------- */
-
-html body .main-content *,
-html body .site-main *,
-html body #main *,
-html body article *,
-html body .entry-content * {
-    color: #ffffff !important;
-    background: transparent !important;
-}
-
-html body .main-content a,
-html body .site-main a,
-html body #main a,
-html body article a,
-html body .entry-content a {
-    color: #00ffff !important;
-    text-decoration: underline !important;
-    background: transparent !important;
-}
-
-html body .main-content a:hover,
-html body .site-main a:hover,
-html body #main a:hover,
-html body article a:hover,
-html body .entry-content a:hover {
-    color: #000080 !important;
-    background: #00ffff !important;
-    text-decoration: none !important;
-}
-
-html body .main-content h1,
-html body .main-content h2,
-html body .main-content h3,
-html body .main-content h4,
-html body .entry-content h1,
-html body .entry-content h2,
-html body .entry-content h3,
-html body .entry-content h4 {
-    color: #00ffff !important;
-    text-transform: uppercase !important;
-    border-bottom: 1px solid #00ffff !important;
-    padding-bottom: 5px !important;
-    margin: 15px 0 !important;
-    background: transparent !important;
-    font-family: 'Courier New', monospace !important;
+.site-content {
+	display: grid;
+	grid-template-columns: minmax( 0, 1fr ) 300px;
+	gap: var( --norton-space-3 );
+	max-width: 1300px;
+	margin: 0 auto;
+	padding: var( --norton-space-3 );
 }
 
 /* --------------------------------------------------------------------------
    Header
    -------------------------------------------------------------------------- */
 
-html body .site-header {
-    text-align: center !important;
-    padding: 20px !important;
-    background: #000080 !important;
+.site-header {
+	text-align: center;
+	padding: var( --norton-space-3 );
 }
 
-html body .site-title a {
-    color: #00ffff !important;
-    text-decoration: none !important;
-    font-family: 'Courier New', monospace !important;
-    font-size: 2em !important;
+.site-title {
+	margin: 0;
 }
 
-html body .site-description {
-    color: #ffffff !important;
-    margin: 0 !important;
-    font-family: 'Courier New', monospace !important;
+.site-title a {
+	color: var( --norton-cyan );
+	text-decoration: none;
+	font-size: 2rem;
 }
 
-/* --------------------------------------------------------------------------
-   Navigation
-   -------------------------------------------------------------------------- */
-
-html body .main-navigation,
-html body nav {
-    background: #000080 !important;
-    padding: 10px !important;
-    text-align: center !important;
-    margin: 0 auto 20px auto !important;
-    width: 90% !important;
-    border-top: 2px solid #5555ff !important;
-    border-left: 2px solid #5555ff !important;
-    border-bottom: 2px solid #000000 !important;
-    border-right: 2px solid #000000 !important;
+.site-title a:hover,
+.site-title a:focus {
+	background: transparent;
+	color: var( --norton-white );
 }
 
-html body .main-navigation a,
-html body nav a {
-    color: #ffffff !important;
-    text-decoration: none !important;
-    padding: 8px 15px !important;
-    margin: 0 5px !important;
-    display: inline-block !important;
-    text-transform: uppercase !important;
-    background: #000080 !important;
-    font-family: 'Courier New', monospace !important;
-    border-top: 2px solid #5555ff !important;
-    border-left: 2px solid #5555ff !important;
-    border-bottom: 2px solid #000000 !important;
-    border-right: 2px solid #000000 !important;
-}
-
-html body .main-navigation a:hover,
-html body nav a:hover {
-    /* Pressed button — reverse bevel */
-    border-top: 2px solid #000000 !important;
-    border-left: 2px solid #000000 !important;
-    border-bottom: 2px solid #5555ff !important;
-    border-right: 2px solid #5555ff !important;
+.site-description {
+	color: var( --norton-white );
+	margin: 0;
 }
 
 /* --------------------------------------------------------------------------
-   Sidebar
+   Navigation — a DOS menu strip of raised buttons
    -------------------------------------------------------------------------- */
 
-html body .sidebar {
-    background: #000080 !important;
-    padding: 15px !important;
-    color: #ffffff !important;
-    border-top: 2px solid #5555ff !important;
-    border-left: 2px solid #5555ff !important;
-    border-bottom: 2px solid #000000 !important;
-    border-right: 2px solid #000000 !important;
+.main-navigation {
+	padding: var( --norton-space-1 );
+	text-align: center;
+	margin: 0 auto var( --norton-space-3 );
+	width: 90%;
+	border-top: var( --norton-bevel-width ) solid var( --norton-bevel-light );
+	border-left: var( --norton-bevel-width ) solid var( --norton-bevel-light );
+	border-bottom: var( --norton-bevel-width ) solid var( --norton-bevel-dark );
+	border-right: var( --norton-bevel-width ) solid var( --norton-bevel-dark );
+}
+
+.main-navigation a {
+	color: var( --norton-white );
+	text-decoration: none;
+	padding: 8px 15px;
+	margin: 0 5px;
+	display: inline-block;
+	text-transform: uppercase;
+	background: var( --norton-navy );
+	border-top: var( --norton-bevel-width ) solid var( --norton-bevel-light );
+	border-left: var( --norton-bevel-width ) solid var( --norton-bevel-light );
+	border-bottom: var( --norton-bevel-width ) solid var( --norton-bevel-dark );
+	border-right: var( --norton-bevel-width ) solid var( --norton-bevel-dark );
+}
+
+/* Pressed button — reverse the bevel. */
+.main-navigation a:hover,
+.main-navigation a:focus {
+	color: var( --norton-cyan );
+	background: var( --norton-navy );
+	border-top-color: var( --norton-bevel-dark );
+	border-left-color: var( --norton-bevel-dark );
+	border-bottom-color: var( --norton-bevel-light );
+	border-right-color: var( --norton-bevel-light );
+}
+
+/* The page you are already on stays pressed. */
+.main-navigation a[aria-current='page'] {
+	color: var( --norton-cyan );
+	border-top-color: var( --norton-bevel-dark );
+	border-left-color: var( --norton-bevel-dark );
+	border-bottom-color: var( --norton-bevel-light );
+	border-right-color: var( --norton-bevel-light );
 }
 
 /* --------------------------------------------------------------------------
-   Widgets
+   Main content
    -------------------------------------------------------------------------- */
 
-html body .widget {
-    margin-bottom: 20px !important;
-    padding: 15px !important;
-    background: #000080 !important;
-    color: #ffffff !important;
-    font-family: 'Courier New', monospace !important;
-    /* Inset effect — inverted bevel */
-    border-top: 2px solid #000000 !important;
-    border-left: 2px solid #000000 !important;
-    border-bottom: 2px solid #5555ff !important;
-    border-right: 2px solid #5555ff !important;
+.main-content {
+	padding: var( --norton-space-3 );
+	border-top: var( --norton-bevel-width ) solid var( --norton-bevel-light );
+	border-left: var( --norton-bevel-width ) solid var( --norton-bevel-light );
+	border-bottom: var( --norton-bevel-width ) solid var( --norton-bevel-dark );
+	border-right: var( --norton-bevel-width ) solid var( --norton-bevel-dark );
 }
 
-html body .widget-title {
-    color: #00ffff !important;
-    font-size: 16px !important;
-    margin-bottom: 10px !important;
-    text-transform: uppercase !important;
-    background: transparent !important;
-    font-family: 'Courier New', monospace !important;
+.main-content > article + article {
+	margin-top: var( --norton-space-3 );
+	padding-top: var( --norton-space-3 );
+	border-top: 1px solid var( --norton-bevel-light );
 }
 
-html body .widget ul {
-    list-style: none !important;
-    padding: 0 !important;
-    margin: 0 !important;
+.entry-title {
+	margin-top: 0;
 }
 
-html body .widget li {
-    margin: 5px 0 !important;
-    color: #ffffff !important;
+.entry-title a {
+	text-decoration: none;
 }
 
-html body .widget a {
-    color: #ffffff !important;
-    text-decoration: none !important;
+/* Headings get the underscored terminal-label treatment. */
+.main-content h1,
+.main-content h2,
+.main-content h3,
+.main-content h4,
+.archive-title {
+	border-bottom: 1px solid var( --norton-cyan );
+	padding-bottom: 5px;
+	margin: var( --norton-space-2 ) 0;
 }
 
-html body .widget a:hover {
-    color: #00ffff !important;
+.archive-title {
+	margin-top: 0;
+	color: var( --norton-cyan );
+	text-transform: uppercase;
 }
 
 /* --------------------------------------------------------------------------
-   Shortcodes / Blocks — [norton_box] and [norton_alert]
-   Note: Main styling is in setup.php nuclear override for specificity guarantee
+   Post list — excerpt and [READ MORE] button
    -------------------------------------------------------------------------- */
 
-/* Alert type prefixes */
-html body .norton-alert::before {
-    content: "[!] " !important;
-    color: #ffff00 !important;
-    font-weight: bold !important;
+.entry-summary {
+	margin: var( --norton-space-1 ) 0 var( --norton-space-3 );
 }
 
-html body .norton-alert.success::before {
-    content: "[\2713] " !important; /* ✓ */
-    color: #00ff00 !important;
-    font-weight: bold !important;
+.read-more {
+	margin: 12px 0 0;
 }
 
-html body .norton-alert.error::before {
-    content: "[\2717] " !important; /* ✗ */
-    color: #ff0000 !important;
-    font-weight: bold !important;
+.read-more a,
+.page-links a {
+	color: var( --norton-white );
+	text-decoration: none;
+	text-transform: uppercase;
+	display: inline-block;
+	padding: 6px 14px;
+	background: var( --norton-navy );
+	font-weight: bold;
+	border-top: var( --norton-bevel-width ) solid var( --norton-bevel-light );
+	border-left: var( --norton-bevel-width ) solid var( --norton-bevel-light );
+	border-bottom: var( --norton-bevel-width ) solid var( --norton-bevel-dark );
+	border-right: var( --norton-bevel-width ) solid var( --norton-bevel-dark );
+}
+
+.read-more a:hover,
+.read-more a:focus,
+.page-links a:hover,
+.page-links a:focus {
+	color: var( --norton-cyan );
+	background: var( --norton-navy );
+	border-top-color: var( --norton-bevel-dark );
+	border-left-color: var( --norton-bevel-dark );
+	border-bottom-color: var( --norton-bevel-light );
+	border-right-color: var( --norton-bevel-light );
+}
+
+.page-links {
+	margin: var( --norton-space-3 ) 0 0;
+	text-transform: uppercase;
 }
 
 /* --------------------------------------------------------------------------
-   Tables — Norton styled borders with box wrapper
-   Note: Main styling is in setup.php nuclear override for specificity guarantee
+   Pagination
    -------------------------------------------------------------------------- */
 
-html body a {
-    color: #00ffff !important;
+.navigation.pagination,
+.navigation.post-navigation {
+	margin-top: var( --norton-space-3 );
+	padding-top: var( --norton-space-2 );
+	border-top: 1px solid var( --norton-bevel-light );
+}
+
+.pagination .nav-links {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 5px;
+	align-items: center;
+}
+
+.pagination .page-numbers {
+	color: var( --norton-white );
+	text-decoration: none;
+	text-transform: uppercase;
+	display: inline-block;
+	padding: 6px 12px;
+	background: var( --norton-navy );
+	border-top: var( --norton-bevel-width ) solid var( --norton-bevel-light );
+	border-left: var( --norton-bevel-width ) solid var( --norton-bevel-light );
+	border-bottom: var( --norton-bevel-width ) solid var( --norton-bevel-dark );
+	border-right: var( --norton-bevel-width ) solid var( --norton-bevel-dark );
+}
+
+.pagination .page-numbers.dots {
+	border-color: transparent;
+	background: transparent;
+}
+
+/* Current page and hover both read as a pressed key. */
+.pagination .page-numbers.current,
+.pagination a.page-numbers:hover,
+.pagination a.page-numbers:focus {
+	color: var( --norton-cyan );
+	background: var( --norton-navy );
+	border-top-color: var( --norton-bevel-dark );
+	border-left-color: var( --norton-bevel-dark );
+	border-bottom-color: var( --norton-bevel-light );
+	border-right-color: var( --norton-bevel-light );
+}
+
+.post-navigation .nav-links {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	gap: var( --norton-space-2 );
 }
 
 /* --------------------------------------------------------------------------
-   Post list — excerpt + [READ MORE] button
+   Sidebar and widgets
    -------------------------------------------------------------------------- */
 
-html body .entry-summary {
-    margin: 10px 0 20px 0 !important;
-    background: transparent !important;
+.sidebar {
+	padding: var( --norton-space-2 );
+	border-top: var( --norton-bevel-width ) solid var( --norton-bevel-light );
+	border-left: var( --norton-bevel-width ) solid var( --norton-bevel-light );
+	border-bottom: var( --norton-bevel-width ) solid var( --norton-bevel-dark );
+	border-right: var( --norton-bevel-width ) solid var( --norton-bevel-dark );
+	align-self: start;
 }
 
-html body .read-more {
-    margin: 12px 0 0 0 !important;
-    background: transparent !important;
+/* Widgets read as inset panels — the bevel runs the other way. */
+.widget {
+	margin-bottom: var( --norton-space-3 );
+	padding: var( --norton-space-2 );
+	border-top: var( --norton-bevel-width ) solid var( --norton-bevel-dark );
+	border-left: var( --norton-bevel-width ) solid var( --norton-bevel-dark );
+	border-bottom: var( --norton-bevel-width ) solid var( --norton-bevel-light );
+	border-right: var( --norton-bevel-width ) solid var( --norton-bevel-light );
 }
 
-/* Raised beveled button, matching the nav buttons */
-html body .read-more a {
-    color: #ffffff !important;
-    text-decoration: none !important;
-    text-transform: uppercase !important;
-    display: inline-block !important;
-    padding: 6px 14px !important;
-    background: #000080 !important;
-    font-family: 'Courier New', monospace !important;
-    font-weight: bold !important;
-    border-top: 2px solid #5555ff !important;
-    border-left: 2px solid #5555ff !important;
-    border-bottom: 2px solid #000000 !important;
-    border-right: 2px solid #000000 !important;
+.widget:last-child {
+	margin-bottom: 0;
 }
 
-html body .read-more a:hover {
-    color: #00ffff !important;
-    background: #000080 !important;
-    /* Pressed button — reverse bevel */
-    border-top: 2px solid #000000 !important;
-    border-left: 2px solid #000000 !important;
-    border-bottom: 2px solid #5555ff !important;
-    border-right: 2px solid #5555ff !important;
+.widget-title {
+	color: var( --norton-cyan );
+	font-size: 1rem;
+	margin: 0 0 var( --norton-space-1 );
+	text-transform: uppercase;
+}
+
+.widget ul {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+
+.widget li {
+	margin: 5px 0;
+}
+
+.widget a {
+	color: var( --norton-white );
+	text-decoration: none;
+}
+
+.widget a:hover,
+.widget a:focus {
+	color: var( --norton-cyan );
+	background: transparent;
 }
 
 /* --------------------------------------------------------------------------
-   WordPress block editor overrides
+   Comments
    -------------------------------------------------------------------------- */
 
-html body .wp-block-heading,
-html body h1.wp-block-heading,
-html body h2.wp-block-heading {
-    color: #00ffff !important;
-    background: transparent !important;
-    font-family: 'Courier New', monospace !important;
+.comments-area {
+	margin-top: var( --norton-space-3 );
+	padding-top: var( --norton-space-3 );
+	border-top: 1px solid var( --norton-bevel-light );
 }
 
-html body .wp-block-paragraph,
-html body p {
-    color: #ffffff !important;
-    background: transparent !important;
-    font-family: 'Courier New', monospace !important;
+.comment-list {
+	list-style: none;
+	padding: 0;
+	margin: 0 0 var( --norton-space-3 );
+}
+
+.comment-list ol.children {
+	list-style: none;
+	padding-left: var( --norton-space-3 );
+}
+
+.comment-body {
+	padding: var( --norton-space-2 );
+	margin-bottom: var( --norton-space-2 );
+	border-top: var( --norton-bevel-width ) solid var( --norton-bevel-dark );
+	border-left: var( --norton-bevel-width ) solid var( --norton-bevel-dark );
+	border-bottom: var( --norton-bevel-width ) solid var( --norton-bevel-light );
+	border-right: var( --norton-bevel-width ) solid var( --norton-bevel-light );
+}
+
+.comment-meta {
+	margin-bottom: var( --norton-space-1 );
+	text-transform: uppercase;
+	font-size: 0.875rem;
+	color: var( --norton-cyan );
+}
+
+.comment-author .avatar {
+	vertical-align: middle;
+	margin-right: 8px;
+}
+
+.comment-awaiting-moderation,
+.no-comments {
+	color: var( --norton-alert-yellow );
+	text-transform: uppercase;
+}
+
+.comment-form label,
+.comment-notes,
+.logged-in-as {
+	display: block;
+	margin-bottom: 5px;
+	text-transform: uppercase;
+	font-size: 0.875rem;
+}
+
+.comment-form input[type='text'],
+.comment-form input[type='email'],
+.comment-form input[type='url'],
+.comment-form textarea,
+.search-field {
+	width: 100%;
+	max-width: 100%;
+	padding: 8px;
+	background: var( --norton-black );
+	color: var( --norton-cyan );
+	font-family: var( --norton-mono );
+	font-size: 1rem;
+	border-top: var( --norton-bevel-width ) solid var( --norton-bevel-dark );
+	border-left: var( --norton-bevel-width ) solid var( --norton-bevel-dark );
+	border-bottom: var( --norton-bevel-width ) solid var( --norton-bevel-light );
+	border-right: var( --norton-bevel-width ) solid var( --norton-bevel-light );
+}
+
+.comment-form p {
+	margin: 0 0 var( --norton-space-2 );
+}
+
+.comment-form .form-submit input[type='submit'],
+.search-submit {
+	color: var( --norton-white );
+	background: var( --norton-navy );
+	font-family: var( --norton-mono );
+	font-weight: bold;
+	text-transform: uppercase;
+	padding: 6px 14px;
+	cursor: pointer;
+	border-top: var( --norton-bevel-width ) solid var( --norton-bevel-light );
+	border-left: var( --norton-bevel-width ) solid var( --norton-bevel-light );
+	border-bottom: var( --norton-bevel-width ) solid var( --norton-bevel-dark );
+	border-right: var( --norton-bevel-width ) solid var( --norton-bevel-dark );
+}
+
+.comment-form .form-submit input[type='submit']:hover,
+.search-submit:hover {
+	color: var( --norton-cyan );
+	border-top-color: var( --norton-bevel-dark );
+	border-left-color: var( --norton-bevel-dark );
+	border-bottom-color: var( --norton-bevel-light );
+	border-right-color: var( --norton-bevel-light );
 }
 
 /* --------------------------------------------------------------------------
-   Footer — cyan bar, DirectoryMaster style
+   Footer — cyan status bar, DirectoryMaster style
    -------------------------------------------------------------------------- */
 
-html body footer,
-html body .site-footer {
-    text-align: center !important;
-    padding: 2px 0 !important;
-    margin-top: 20px !important;
-    background: #00ffff !important;
-    color: #000000 !important;
-    font-family: 'Courier New', monospace !important;
-    font-weight: bold !important;
-    border: none !important;
-    position: relative !important;
-    z-index: 10 !important;
-    line-height: 1 !important;
+.site-footer {
+	text-align: center;
+	padding: 2px 0;
+	margin-top: var( --norton-space-3 );
+	background: var( --norton-cyan );
+	color: var( --norton-black );
+	font-weight: bold;
+	line-height: 1;
+	position: relative;
+	z-index: 101;
 }
 
-html body footer *,
-html body .site-footer * {
-    color: #000000 !important;
-    background: transparent !important;
-    margin: 0 !important;
-    padding: 0 !important;
+.site-footer a {
+	color: var( --norton-black );
 }
 
 /* --------------------------------------------------------------------------
-   Responsive — single column on mobile
+   Responsive — single column on narrow screens
    -------------------------------------------------------------------------- */
 
-@media (max-width: 768px) {
-    html body .site-content,
-    html body #content,
-    html body .content-area {
-        grid-template-columns: 1fr !important;
-        padding: 10px !important;
-        gap: 15px !important;
-    }
+@media ( max-width: 768px ) {
+	body {
+		font-size: 0.875rem;
+	}
 
-    html body .main-navigation,
-    html body nav {
-        padding: 5px !important;
-        width: 95% !important;
-    }
+	.site-content {
+		grid-template-columns: minmax( 0, 1fr );
+		padding: var( --norton-space-1 );
+		gap: var( --norton-space-2 );
+	}
 
-    html body .main-navigation a,
-    html body nav a {
-        display: block !important;
-        margin: 2px 0 !important;
-        padding: 12px 15px !important;
-        text-align: center !important;
-    }
+	.main-navigation {
+		padding: 5px;
+		width: 95%;
+	}
 
-    html body .main-content,
-    html body .sidebar {
-        padding: 15px !important;
-    }
+	.main-navigation a {
+		display: block;
+		margin: 2px 0;
+		padding: 12px 15px;
+		text-align: center;
+	}
 
-    html body,
-    html body.wordpress {
-        font-size: 14px !important;
-    }
+	.main-content,
+	.sidebar {
+		padding: var( --norton-space-2 );
+	}
 
-    html body h1,
-    html body h2,
-    html body h3 {
-        font-size: 1.2em !important;
-    }
-
-    /* No edge fades on narrow screens */
-    html body::before,
-    html body::after {
-        display: none !important;
-    }
+	/* No edge fades on narrow screens — they eat too much of the viewport. */
+	body::before,
+	body::after {
+		display: none;
+	}
 }

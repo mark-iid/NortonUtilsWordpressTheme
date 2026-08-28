@@ -21,7 +21,6 @@ function norton_register_blocks() {
             'align'        => true,
         ),
     ) );
-    error_log( 'Registered norton/box' );
     
     // Norton Box Invert
     register_block_type( 'norton/box-invert', array(
@@ -34,7 +33,6 @@ function norton_register_blocks() {
             'align'        => true,
         ),
     ) );
-    error_log( 'Registered norton/box-invert' );
     
     // Norton Alert
     register_block_type( 'norton/alert', array(
@@ -53,7 +51,6 @@ function norton_register_blocks() {
             'align'        => true,
         ),
     ) );
-    error_log( 'Registered norton/alert' );
 }
 
 add_action( 'init', 'norton_register_blocks', 10 );

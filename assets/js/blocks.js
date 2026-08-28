@@ -7,7 +7,6 @@ var registerBlockType = wp.blocks.registerBlockType;
 var InnerBlocks = wp.blockEditor.InnerBlocks;
 var el = wp.element.createElement;
 
-console.log( 'norton-blocks.js loaded' );
 
 // Norton Box Block
 registerBlockType( 'norton/box', {
@@ -40,7 +39,6 @@ registerBlockType( 'norton/box', {
     },
 } );
 
-console.log( 'Registered norton/box' );
 
 // Norton Box Invert Block
 registerBlockType( 'norton/box-invert', {
@@ -75,7 +73,6 @@ registerBlockType( 'norton/box-invert', {
     },
 } );
 
-console.log( 'Registered norton/box-invert' );
 
 // Norton Alert Block
 registerBlockType( 'norton/alert', {
@@ -130,7 +127,6 @@ registerBlockType( 'norton/alert', {
     },
 } );
 
-console.log( 'Registered norton/alert' );
 
 
 

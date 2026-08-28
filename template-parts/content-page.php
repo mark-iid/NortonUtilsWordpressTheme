@@ -10,4 +10,11 @@
         ) );
         ?>
     </div>
+
+    <?php
+    // Only loads comments.php when the post actually accepts or has comments.
+    if ( comments_open() || get_comments_number() ) {
+        comments_template();
+    }
+    ?>
 </article>

@@ -6,6 +6,8 @@
  * line text can be edited without touching code.
  */
 
+defined( 'ABSPATH' ) || exit;
+
 function norton_customize_register( $wp_customize ) {
     $wp_customize->add_section( 'norton_footer', array(
         'title'    => __( 'Footer', 'norton-simple' ),

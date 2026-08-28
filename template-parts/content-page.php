@@ -1,3 +1,12 @@
+<?php
+/**
+ * Norton Simple — Full content for a page
+ *
+ * @package Norton_Simple
+ */
+
+defined( 'ABSPATH' ) || exit;
+?>
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
     <h1 class="entry-title"><?php the_title(); ?></h1>
 

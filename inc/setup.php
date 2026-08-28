@@ -101,14 +101,20 @@ function norton_simple_scripts() {
 add_action( 'wp_enqueue_scripts', 'norton_simple_scripts' );
 
 /**
- * Custom nav walker — outputs flat <a> tags with no <ul>/<li> wrappers.
- * Keeps the nav bar looking like a real DOS menu strip.
+ * Nav menu fallback.
+ *
+ * Switching themes drops the menu's assignment to the "primary" location —
+ * the menu itself still exists under Appearance -> Menus. Until one is
+ * assigned, fall back to Home plus every top-level page, in markup that
+ * matches wp_nav_menu() so the same CSS applies.
  */
-class Norton_Simple_Walker_Nav_Menu extends Walker_Nav_Menu {
-	public function start_el( &$output, $item, $depth = 0, $args = array(), $id = 0 ) {
-		$output .= '<a href="' . esc_url( $item->url ) . '">' . esc_html( $item->title ) . '</a>';
-	}
-	public function end_el( &$output, $item, $depth = 0, $args = array() ) {}
-	public function start_lvl( &$output, $depth = 0, $args = array() ) {}
-	public function end_lvl( &$output, $depth = 0, $args = array() ) {}
+function norton_simple_menu_fallback() {
+	wp_page_menu( array(
+		'container'   => false,
+		'menu_class'  => 'nav-menu',
+		'menu_id'     => 'primary-menu',
+		'show_home'   => __( 'Home', 'norton-simple' ),
+		'sort_column' => 'menu_order, post_title',
+		'depth'       => 2,
+	) );
 }

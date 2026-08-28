@@ -6,6 +6,8 @@
  * [norton_alert type="info|success|error"] — status alert with prefix glyph.
  */
 
+defined( 'ABSPATH' ) || exit;
+
 /**
  * [norton_box]...[/norton_box]
  * Wraps content in a Norton-styled raised box.

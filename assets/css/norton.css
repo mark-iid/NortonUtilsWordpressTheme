@@ -164,6 +164,17 @@ body::after {
 	border-right: var( --norton-bevel-width ) solid var( --norton-bevel-dark );
 }
 
+.main-navigation ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.main-navigation li {
+	display: inline-block;
+	position: relative;
+}
+
 .main-navigation a {
 	color: var( --norton-white );
 	text-decoration: none;
@@ -189,8 +200,42 @@ body::after {
 	border-right-color: var( --norton-bevel-light );
 }
 
+/* Submenus drop below their parent, and open for keyboard users too. */
+.main-navigation ul ul {
+	display: none;
+	position: absolute;
+	top: 100%;
+	left: 0;
+	z-index: 200;
+	min-width: max-content;
+	padding: 5px;
+	text-align: left;
+	background: var( --norton-navy );
+	border-top: var( --norton-bevel-width ) solid var( --norton-bevel-light );
+	border-left: var( --norton-bevel-width ) solid var( --norton-bevel-light );
+	border-bottom: var( --norton-bevel-width ) solid var( --norton-bevel-dark );
+	border-right: var( --norton-bevel-width ) solid var( --norton-bevel-dark );
+}
+
+.main-navigation li:hover > ul,
+.main-navigation li:focus-within > ul {
+	display: block;
+}
+
+.main-navigation ul ul li {
+	display: block;
+}
+
+.main-navigation ul ul a {
+	display: block;
+	margin: 2px 0;
+	white-space: nowrap;
+}
+
 /* The page you are already on stays pressed. */
-.main-navigation a[aria-current='page'] {
+.main-navigation a[aria-current='page'],
+.main-navigation .current-menu-item > a,
+.main-navigation .current_page_item > a {
 	color: var( --norton-cyan );
 	border-top-color: var( --norton-bevel-dark );
 	border-left-color: var( --norton-bevel-dark );
@@ -538,11 +583,23 @@ body::after {
 		width: 95%;
 	}
 
+	.main-navigation li {
+		display: block;
+	}
+
 	.main-navigation a {
 		display: block;
 		margin: 2px 0;
 		padding: 12px 15px;
 		text-align: center;
+	}
+
+	/* No room to drop a panel — show submenus inline, indented. */
+	.main-navigation ul ul {
+		display: block;
+		position: static;
+		border: 0;
+		padding: 0 0 0 var( --norton-space-3 );
 	}
 
 	.main-content,

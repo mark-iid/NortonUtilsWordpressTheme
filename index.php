@@ -1,7 +1,16 @@
-<?php get_header(); ?>
+<?php
+/**
+ * Norton Simple — Main Index Template
+ *
+ * @package Norton_Simple
+ */
+
+defined( 'ABSPATH' ) || exit;
+
+get_header(); ?>
 
 <div class="site-content">
-    <main class="main-content" id="main" role="main">
+    <main class="main-content" id="main">
         <?php
         if ( have_posts() ) :
             while ( have_posts() ) :

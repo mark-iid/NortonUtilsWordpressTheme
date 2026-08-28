@@ -57,6 +57,7 @@ if ( post_password_required() ) {
 	<?php
 	comment_form( array(
 		'title_reply'         => esc_html__( '[LEAVE A COMMENT]', 'norton-simple' ),
+		/* translators: %s: name of the comment author being replied to. */
 		'title_reply_to'      => esc_html__( '[REPLY TO %s]', 'norton-simple' ),
 		'cancel_reply_link'   => esc_html__( '[CANCEL]', 'norton-simple' ),
 		'label_submit'        => esc_html__( 'Transmit', 'norton-simple' ),

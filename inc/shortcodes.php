@@ -39,6 +39,6 @@ function norton_shortcode_alert( $atts, $content = null ) {
     $allowed_types = array( 'info', 'success', 'error' );
     $type          = in_array( $atts['type'], $allowed_types, true ) ? $atts['type'] : 'info';
 
-    return '<div class="norton-alert ' . esc_attr( $type ) . '">' . do_shortcode( $content ) . '</div>';
+    return '<div class="norton-alert is-type-' . esc_attr( $type ) . '">' . do_shortcode( $content ) . '</div>';
 }
 add_shortcode( 'norton_alert', 'norton_shortcode_alert' );

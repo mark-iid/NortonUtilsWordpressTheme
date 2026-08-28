@@ -2,55 +2,45 @@
 /**
  * Norton Simple — Custom Blocks
  *
- * Register Norton Box and Norton Alert as native WordPress blocks.
- * Uses client-side rendering with InnerBlocks for content editing.
+ * Registers Norton Box, Norton Box Invert and Norton Alert from their
+ * blocks/<name>/block.json metadata. Each block is dynamic: the editor saves
+ * only the inner blocks, and the matching render.php emits the wrapper at
+ * render time so markup changes ship without re-saving every post.
  */
+
+defined( 'ABSPATH' ) || exit;
 
 /**
- * Register Norton blocks
+ * Block directory names under blocks/, relative to the theme root.
  */
-function norton_register_blocks() {
-    // Norton Box
-    register_block_type( 'norton/box', array(
-        'title'           => 'Norton Box',
-        'description'     => 'A raised-style box with beveled borders',
-        'category'        => 'design',
-        'icon'            => 'admin-page',
-        'supports'        => array(
-            'className'    => true,
-            'align'        => true,
-        ),
-    ) );
-    
-    // Norton Box Invert
-    register_block_type( 'norton/box-invert', array(
-        'title'           => 'Norton Box Invert',
-        'description'     => 'An inset-style box with inverted beveled borders',
-        'category'        => 'design',
-        'icon'            => 'admin-page',
-        'supports'        => array(
-            'className'    => true,
-            'align'        => true,
-        ),
-    ) );
-    
-    // Norton Alert
-    register_block_type( 'norton/alert', array(
-        'title'           => 'Norton Alert',
-        'description'     => 'An alert box with configurable type',
-        'category'        => 'design',
-        'icon'            => 'info',
-        'attributes'      => array(
-            'type' => array(
-                'type'    => 'string',
-                'default' => 'info',
-            ),
-        ),
-        'supports'        => array(
-            'className'    => true,
-            'align'        => true,
-        ),
-    ) );
+function norton_simple_block_dirs() {
+	return array( 'box', 'box-invert', 'alert' );
 }
 
-add_action( 'init', 'norton_register_blocks', 10 );
+/**
+ * Register the shared editor script referenced by each block.json's
+ * "editorScript" handle. One bundle registers all three blocks, so they share
+ * a single handle rather than one file per block.
+ */
+function norton_simple_register_block_assets() {
+	wp_register_script(
+		'norton-simple-blocks',
+		get_template_directory_uri() . '/assets/js/blocks.js',
+		array( 'wp-blocks', 'wp-block-editor', 'wp-element', 'wp-components', 'wp-i18n' ),
+		wp_get_theme()->get( 'Version' ),
+		true
+	);
+
+	wp_set_script_translations( 'norton-simple-blocks', 'norton-simple', get_template_directory() . '/languages' );
+}
+add_action( 'init', 'norton_simple_register_block_assets', 5 );
+
+/**
+ * Register each block from its block.json metadata.
+ */
+function norton_simple_register_blocks() {
+	foreach ( norton_simple_block_dirs() as $block_dir ) {
+		register_block_type( get_template_directory() . '/blocks/' . $block_dir );
+	}
+}
+add_action( 'init', 'norton_simple_register_blocks' );

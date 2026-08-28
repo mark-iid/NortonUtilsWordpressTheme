@@ -54,20 +54,6 @@ function norton_simple_scripts() {
 add_action( 'wp_enqueue_scripts', 'norton_simple_scripts' );
 
 /**
- * Enqueue block editor scripts for Norton blocks
- */
-function norton_enqueue_block_editor_assets() {
-    wp_enqueue_script(
-        'norton-blocks',
-        get_template_directory_uri() . '/assets/js/blocks.js',
-        array( 'wp-blocks', 'wp-block-editor', 'wp-element' ),
-        wp_get_theme()->get( 'Version' ),
-        false
-    );
-}
-add_action( 'enqueue_block_editor_assets', 'norton_enqueue_block_editor_assets' );
-
-/**
  * Custom nav walker — outputs flat <a> tags with no <ul>/<li> wrappers.
  * Keeps the nav bar looking like a real DOS menu strip.
  */

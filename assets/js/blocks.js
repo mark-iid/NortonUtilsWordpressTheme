@@ -1,133 +1,89 @@
 /**
- * Norton Simple Blocks
- * Register Norton blocks for the WordPress block editor.
+ * Norton Simple — Block Editor
+ *
+ * Editor-side implementations for the three Norton blocks. Names, titles,
+ * icons, attributes and supports all come from each block's block.json, which
+ * is registered server-side in inc/blocks.php — only edit/save live here.
+ *
+ * These are dynamic blocks: save() serialises the inner blocks only, and the
+ * matching blocks/<name>/render.php emits the wrapper at render time.
  */
+( function ( blocks, blockEditor, components, element, i18n ) {
+	'use strict';
 
-var registerBlockType = wp.blocks.registerBlockType;
-var InnerBlocks = wp.blockEditor.InnerBlocks;
-var el = wp.element.createElement;
+	var registerBlockType = blocks.registerBlockType;
+	var InnerBlocks = blockEditor.InnerBlocks;
+	var InspectorControls = blockEditor.InspectorControls;
+	var useBlockProps = blockEditor.useBlockProps;
+	var PanelBody = components.PanelBody;
+	var SelectControl = components.SelectControl;
+	var el = element.createElement;
+	var __ = i18n.__;
 
+	/**
+	 * Save the inner blocks unwrapped. render.php supplies the wrapper.
+	 */
+	function saveInnerBlocksOnly() {
+		return el( InnerBlocks.Content );
+	}
 
-// Norton Box Block
-registerBlockType( 'norton/box', {
-    title: 'Norton Box',
-    description: 'A raised-style box with beveled borders',
-    category: 'design',
-    icon: 'admin-page',
-    supports: {
-        className: true,
-        align: true,
-    },
-    edit: function( props ) {
-        return el( 'div', 
-            { 
-                style: { 
-                    border: '2px solid #5555ff', 
-                    padding: '20px', 
-                    color: '#fff', 
-                    backgroundColor: '#000080',
-                    marginTop: '20px',
-                    marginBottom: '20px'
-                },
-                className: 'wp-block-norton-box'
-            },
-            el( InnerBlocks, null )
-        );
-    },
-    save: function( props ) {
-        return el( 'div', { className: 'norton-box' }, el( InnerBlocks.Content ) );
-    },
-} );
+	registerBlockType( 'norton/box', {
+		edit: function () {
+			return el(
+				'div',
+				useBlockProps( { className: 'norton-box' } ),
+				el( InnerBlocks )
+			);
+		},
+		save: saveInnerBlocksOnly,
+	} );
 
+	registerBlockType( 'norton/box-invert', {
+		edit: function () {
+			return el(
+				'div',
+				useBlockProps( { className: 'norton-box-invert' } ),
+				el( InnerBlocks )
+			);
+		},
+		save: saveInnerBlocksOnly,
+	} );
 
-// Norton Box Invert Block
-registerBlockType( 'norton/box-invert', {
-    title: 'Norton Box Invert',
-    description: 'An inset-style box with inverted beveled borders',
-    category: 'design',
-    icon: 'admin-page',
-    supports: {
-        className: true,
-        align: true,
-    },
-    edit: function( props ) {
-        return el( 'div', 
-            { 
-                style: { 
-                    border: '2px solid #000000', 
-                    borderRight: '2px solid #5555ff', 
-                    borderBottom: '2px solid #5555ff', 
-                    padding: '20px', 
-                    color: '#fff', 
-                    backgroundColor: '#000080',
-                    marginTop: '20px',
-                    marginBottom: '20px'
-                },
-                className: 'wp-block-norton-box-invert'
-            },
-            el( InnerBlocks, null )
-        );
-    },
-    save: function( props ) {
-        return el( 'div', { className: 'norton-box-invert' }, el( InnerBlocks.Content ) );
-    },
-} );
+	registerBlockType( 'norton/alert', {
+		edit: function ( props ) {
+			var type = props.attributes.type || 'info';
 
-
-// Norton Alert Block
-registerBlockType( 'norton/alert', {
-    title: 'Norton Alert',
-    description: 'An alert box with configurable type',
-    category: 'design',
-    icon: 'info',
-    attributes: {
-        type: {
-            type: 'string',
-            default: 'info',
-        },
-    },
-    supports: {
-        className: true,
-        align: true,
-    },
-    edit: function( props ) {
-        var attributes = props.attributes;
-        var setAttributes = props.setAttributes;
-        
-        return el( 'div', null,
-            el( 'select', {
-                value: attributes.type,
-                onChange: function( e ) {
-                    setAttributes( { type: e.target.value } );
-                },
-                style: { marginBottom: '10px', padding: '5px', display: 'block', marginTop: '10px' }
-            },
-                el( 'option', { value: 'info' }, 'Info' ),
-                el( 'option', { value: 'success' }, 'Success' ),
-                el( 'option', { value: 'error' }, 'Error' )
-            ),
-            el( 'div', { 
-                style: { 
-                    border: '2px solid #5555ff', 
-                    padding: '20px', 
-                    color: '#fff', 
-                    backgroundColor: '#000080',
-                    marginTop: '10px',
-                    marginBottom: '20px'
-                },
-                className: 'wp-block-norton-alert'
-            },
-                el( InnerBlocks, null )
-            )
-        );
-    },
-    save: function( props ) {
-        var attributes = props.attributes;
-        return el( 'div', { className: 'norton-alert ' + attributes.type }, el( InnerBlocks.Content ) );
-    },
-} );
-
-
-
-
-
+			return el(
+				element.Fragment,
+				null,
+				el(
+					InspectorControls,
+					null,
+					el(
+						PanelBody,
+						{ title: __( 'Alert settings', 'norton-simple' ) },
+						el( SelectControl, {
+							label: __( 'Type', 'norton-simple' ),
+							value: type,
+							options: [
+								{ label: __( 'Info', 'norton-simple' ), value: 'info' },
+								{ label: __( 'Success', 'norton-simple' ), value: 'success' },
+								{ label: __( 'Error', 'norton-simple' ), value: 'error' },
+							],
+							onChange: function ( value ) {
+								props.setAttributes( { type: value } );
+							},
+							__nextHasNoMarginBottom: true,
+						} )
+					)
+				),
+				el(
+					'div',
+					useBlockProps( { className: 'norton-alert is-type-' + type } ),
+					el( InnerBlocks )
+				)
+			);
+		},
+		save: saveInnerBlocksOnly,
+	} );
+} )( window.wp.blocks, window.wp.blockEditor, window.wp.components, window.wp.element, window.wp.i18n );

@@ -7,7 +7,11 @@
   "category": "design",
   "icon": "admin-page",
   "textdomain": "norton-simple",
+  "editorScript": "norton-simple-blocks",
+  "render": "file:./render.php",
   "supports": {
+    "align": true,
+    "anchor": true,
     "color": {
       "background": false,
       "text": false

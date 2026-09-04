@@ -1,6 +1,14 @@
 # Norton Simple
 
+[![Build theme](https://github.com/mark-iid/NortonUtilsWordpressTheme/actions/workflows/build.yml/badge.svg)](https://github.com/mark-iid/NortonUtilsWordpressTheme/actions/workflows/build.yml)
+[![Latest release](https://img.shields.io/github/v/release/mark-iid/NortonUtilsWordpressTheme?sort=semver)](https://github.com/mark-iid/NortonUtilsWordpressTheme/releases/latest)
+[![WordPress](https://img.shields.io/badge/WordPress-6.6%2B-21759b)](https://wordpress.org/)
+[![PHP](https://img.shields.io/badge/PHP-7.4%2B-777bb4)](https://www.php.net/)
+[![License: GPL-3.0-or-later](https://img.shields.io/badge/license-GPL--3.0--or--later-blue)](./LICENSE)
+
 A WordPress theme with a retro Norton Utilities / DirectoryMaster aesthetic. Dark blue background, cyan headers, monospace font throughout, and the beveled-border UI elements of classic DOS-era software.
+
+![Norton Simple screenshot](./screenshot.png)
 
 Requires WordPress 6.6 or later and PHP 7.4 or later. Tested against
 WordPress 7.1.
@@ -16,22 +24,31 @@ WordPress 7.1.
 - `theme.json` palette and type scale, so the block editor offers the theme's
   colours and nothing else
 - Matching block editor styles — what you write is what readers get
+- Full template set: index, single, page, archive, search results, 404 and
+  threaded comments, with paginated post listings and prev/next post navigation
+- Widgetized right sidebar, featured images and wide/full block alignment
 - Customizable footer status text via the WordPress Customizer
 - CRT edge-fade effects via CSS pseudo-elements
 - Translation ready, with a POT file in `languages/`
 
 ## Installation
 
-**From source (recommended):**
+**From a release (quickest):**
+
+Download `norton-simple.zip` from the [latest release](https://github.com/mark-iid/NortonUtilsWordpressTheme/releases/latest)
+and upload it via **WP Admin → Appearance → Themes → Add New → Upload Theme**.
+Every tagged build is produced by the same script CI runs.
+
+**From source:**
 
 ```bash
-git clone https://github.com/markearnest/norton-simple.git
-cd norton-simple
+git clone https://github.com/mark-iid/NortonUtilsWordpressTheme.git
+cd NortonUtilsWordpressTheme
 npm install
 npm run build
 ```
 
-Then upload `dist/norton-simple.zip` via **WP Admin → Appearance → Themes → Add New → Upload Theme**.
+Then upload `dist/norton-simple.zip` the same way.
 
 **Manual:**
 
@@ -46,6 +63,11 @@ npm run clean     # remove dist/
 ```
 
 The zip is self-contained — just the theme files, no dev artifacts.
+
+The [Build theme](.github/workflows/build.yml) workflow runs the same build on
+every push and pull request to `main`. Pushing a `v*` tag additionally checks
+that the tag matches the `Version:` line in `style.css`, then attaches the zip
+to a GitHub Release — so bump `style.css` and `package.json` before tagging.
 
 ## Blocks
 
@@ -125,14 +147,19 @@ norton-simple/
 ├── single.php
 ├── style.css                   Theme header only (WordPress metadata)
 ├── build.js                    Build script
-└── package.json
+├── package.json
+├── COPYRIGHT                   Theme copyright notice
+└── LICENSE                     Verbatim GPL-3.0 text
 ```
 
 ## License
 
 This theme is licensed under the **GNU General Public License v3.0 or later** (GPL-3.0-or-later).
 
-See [LICENSE](./LICENSE) file for full details. You are free to:
+[LICENSE](./LICENSE) is the verbatim GPL-3.0 text as published by the Free
+Software Foundation; the theme's own copyright notice is in
+[COPYRIGHT](./COPYRIGHT). Both ship inside the built zip, which is what the
+GPL requires of anyone redistributing the theme. You are free to:
 - Use this theme on any website
 - Modify the code
 - Distribute modified or unmodified versions
@@ -151,6 +178,6 @@ declared in `theme.json`, and reach the browser as `--wp--preset--*` custom
 properties. `assets/css/` styles only what `theme.json` has no field for:
 layout, and the beveled chrome.
 
-Neither stylesheet contains an `!important`. If a rule looks like it needs
-one, the value almost certainly belongs in `theme.json` instead — that is
-what makes the theme win the cascade without fighting it.
+No stylesheet in the theme contains an `!important`. If a rule looks like it
+needs one, the value almost certainly belongs in `theme.json` instead — that
+is what makes the theme win the cascade without fighting it.
